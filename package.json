@@ -1,0 +1,22 @@
+{
+  "name": "democli",
+  "version": "1.0.0",
+  "description": "create a demo CLI using the given 42 Words APIs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/milindsahoo329/demoCLI.git"
+  },
+  "author": "Milind Sahoo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/milindsahoo329/demoCLI/issues"
+  },
+  "homepage": "https://github.com/milindsahoo329/demoCLI#readme",
+  "dependencies": {
+    "outside-cli": "^1.0.0"
+  }
+}
