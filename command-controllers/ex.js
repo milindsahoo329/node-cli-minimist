@@ -1,5 +1,6 @@
 const ora = require('ora');
 const getExamples = require('../utils/examples');
+const formatExamples = require('../utils/formatExamples');
 
 module.exports = async (args) => {
   const word = args._[1];
@@ -8,7 +9,8 @@ module.exports = async (args) => {
 
   try {
     const example = await getExamples(word);
-    console.log(example);
+    let text = await formatExamples(example);
+    console.log(text);
     spinner.stop();
   } catch (err) {
     spinner.stop();

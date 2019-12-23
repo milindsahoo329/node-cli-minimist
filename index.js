@@ -18,7 +18,6 @@ module.exports = () => {
   //console.log("first argument - ",firstArg);
   //console.log("args - ",args);
 
-
   switch (firstArg) {
     case 'scenario-test':
       require('./command-controllers/test')(args);
