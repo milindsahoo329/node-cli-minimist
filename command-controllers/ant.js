@@ -1,5 +1,6 @@
 const ora = require('ora');
 const getRelatedWords = require('../utils/relatedWords');
+const formatRelatedWords = require('../utils/formatRelatedWords');
 
 module.exports = async (args) => {
   const word = args._[1];
@@ -8,7 +9,8 @@ module.exports = async (args) => {
 
   try {
     const relatedWord = await getRelatedWords(word);
-    console.log(relatedWord);
+    let text = await formatRelatedWords(relatedWord,"antonym");
+    console.log(text);
     spinner.stop();
   } catch (err) {
     spinner.stop();
