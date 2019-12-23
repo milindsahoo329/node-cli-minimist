@@ -7,8 +7,8 @@ module.exports = () => {
   //console.log("args - ",args);
 
   switch (firstArg) {
-    case 'defn':
-      require('./command-controllers/defn')(args);
+    case 'test':
+      require('./command-controllers/test')(args);
       break;
 
     default:
