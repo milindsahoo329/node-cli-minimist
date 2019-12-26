@@ -8,7 +8,7 @@ module.exports = () => {
     firstArg = "scenario-random";
   } else {
     firstArg = args._[0];
-    if(ld.includes(['defn','syn','ant','ex'],firstArg)){
+    if((ld.includes(['defn','syn','ant','ex','play'],firstArg))){
 
     } else {
       firstArg = "scenario-full";
@@ -51,6 +51,11 @@ module.exports = () => {
     //6
     case 'scenario-random':
       require('./command-controllers/random')(args);
+      break;
+
+    //7
+    case 'play':
+      require('./command-controllers/play')(args);
       break;
 
     default:
