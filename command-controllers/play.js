@@ -10,6 +10,11 @@ const askWordOnBasisOfMeaning = require('./playSupport/askWordOnBasisOfMeaning')
 const displayOptionMenu = require('./playSupport/displayOptionMenu');
 const tryAgainWord = require('./playSupport/tryAgainWord');
 const tryAgainAfterAntonym = require('./playSupport/tryAgainAfterAntonym');
+const tryAgainAfterSynonym = require('./playSupport/tryAgainAfterSynonym');
+
+let getRandomWholeNumber = function(min,max){
+  return Math.floor(Math.random()*(1 + max - min) + min);
+}
 
 module.exports = async (args) => {
   //get random words
@@ -20,8 +25,9 @@ module.exports = async (args) => {
   synonymArray.push(randomWord.word);
 
   //Enter the word to be find out randomly ( use some random function )
-  console.log(synonymArray[synonymArray.length-2]);
-  console.log(synonymArray);
+  let randomNumber = getRandomWholeNumber(0,synonymArray.length-1);
+  console.log(synonymArray[randomNumber]);
+  //console.log(synonymArray);
 
   let askWordOnBasisOfMeaningAnswer = await askWordOnBasisOfMeaning();
 
@@ -48,19 +54,33 @@ module.exports = async (args) => {
         //2
         case '2':
           // Displaying some antonyms
-          let antonymArray = ld.find(relatedWord,{relationshipType:"antonym"}).words;
-          console.log(antonymArray[antonymArray.length-1]);
-          let tryAgainAfterAntonymAnswer = await tryAgainAfterAntonym();
-          if(((ld.includes(synonymArray,tryAgainAfterAntonymAnswer.Word)))){
-            console.log("Correct Answer !!!");
-            keepDisplaying = 1;
+
+          if(ld.find(relatedWord,{relationshipType:"antonym"})){
+            let antonymArray = ld.find(relatedWord,{relationshipType:"antonym"}).words;
+            randomNumber = getRandomWholeNumber(0,antonymArray.length-1);
+            console.log(antonymArray[randomNumber]);
+            let tryAgainAfterAntonymAnswer = await tryAgainAfterAntonym();
+            if(((ld.includes(synonymArray,tryAgainAfterAntonymAnswer.Word)))){
+              console.log("Correct Answer !!!");
+              keepDisplaying = 1;
+            }
+          } else {
+            let randomNumber = getRandomWholeNumber(0,synonymArray.length-2);
+            console.log(synonymArray[randomNumber]);
+            let tryAgainAfterSynonymAnswer = await tryAgainAfterSynonym();
+            if(((ld.includes(synonymArray,tryAgainAfterSynonymAnswer.Word)))){
+              console.log("Correct Answer !!!");
+              keepDisplaying = 1;
+            }
           }
+
           break;
 
         //3
         case '3':
           keepDisplaying = 1;
           console.log("Thanks. Quitting...");
+          console.log("Word was ", randomWord.word,"\n");
           break;
 
         default:
