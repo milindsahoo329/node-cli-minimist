@@ -4,7 +4,6 @@ const getDefinitions = require('../utils/definitions');
 const getExamples = require('../utils/examples');
 const getRelatedWords = require('../utils/relatedWords');
 
-
 const formatExamples = require('../utils/formatExamples');
 const formatDefinitions = require('../utils/formatDefinitions');
 const formatRelatedWords = require('../utils/formatRelatedWords');
@@ -30,7 +29,6 @@ module.exports = async (args) => {
 
     let text_syn = await formatRelatedWords(relatedWord,"synonym");
     console.log("SYNONYMS - ",text_syn);
-
 
     spinner.stop();
   } catch (err) {
