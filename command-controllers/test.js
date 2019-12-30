@@ -21,7 +21,6 @@ module.exports = async (args) => {
     const relatedWord = await getRelatedWords(randomWord.word);
     console.log(relatedWord);
 
-
     spinner.stop();
   } catch (err) {
     spinner.stop();
