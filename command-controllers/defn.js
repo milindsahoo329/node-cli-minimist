@@ -8,8 +8,11 @@ module.exports = async (args) => {
   const spinner = ora().start();
   try {
     const definition = await getDefinitions(word);
-    let text = await formatDefinitions(definition);
-    console.log(text);
+    if(definition.status != "failed"){
+      let text = await formatDefinitions(definition);
+      console.log(text);
+    }
+
     spinner.stop();
   } catch (err) {
     spinner.stop();

@@ -9,8 +9,10 @@ module.exports = async (args) => {
 
   try {
     const example = await getExamples(word);
-    let text = await formatExamples(example);
-    console.log(text);
+    if(example.status != "failed"){
+     let text = await formatExamples(example);
+     console.log(text);
+    }
     spinner.stop();
   } catch (err) {
     spinner.stop();

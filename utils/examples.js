@@ -8,8 +8,13 @@ module.exports = async (word) => {
     axios.get(apihost+'/word/'+word+'/examples?api_key='+apikey, {}, {
     })
     .then(function(response) {
-      //console.log(response.data);
+      //console.log(response);
       return resolve(response.data);
+    })
+    .catch((err)=>{
+      return resolve({
+        status : "failed"
+      });
     });
   });
 }

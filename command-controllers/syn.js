@@ -9,8 +9,10 @@ module.exports = async (args) => {
 
   try {
     const relatedWord = await getRelatedWords(word);
-    let text = await formatRelatedWords(relatedWord,"synonym");
-    console.log(text);
+    if(relatedWord.status != "failed"){
+      let text = await formatRelatedWords(relatedWord,"synonym");
+      console.log(text);
+    }
     spinner.stop();
   } catch (err) {
     spinner.stop();

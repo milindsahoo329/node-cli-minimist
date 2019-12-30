@@ -15,20 +15,28 @@ module.exports = async (args) => {
 
   try {
 
+    let check_word = 1;
+
     const definition = await getDefinitions(word);
-    let text_def = await formatDefinitions(definition);
-    console.log("DEFINITION - ",text_def);
+    if(definition.status != "failed"){
+      let text_def = await formatDefinitions(definition);
+      console.log("DEFINITION - ",text_def);
+    }
 
     const example = await getExamples(word);
-    let text_ex = await formatExamples(example);
-    console.log("EXAMPLES - ",text_ex);
+    if(example.status != "failed"){
+      let text_ex = await formatExamples(example);
+      console.log("EXAMPLES - ",text_ex);
+    }
 
     const relatedWord = await getRelatedWords(word);
-    let text_ant = await formatRelatedWords(relatedWord,"antonym");
-    console.log("ANTONYMS - ",text_ant);
+    if(relatedWord.status != "failed"){
+      let text_ant = await formatRelatedWords(relatedWord,"antonym");
+      console.log("ANTONYMS - ",text_ant);
 
-    let text_syn = await formatRelatedWords(relatedWord,"synonym");
-    console.log("SYNONYMS - ",text_syn);
+      let text_syn = await formatRelatedWords(relatedWord,"synonym");
+      console.log("SYNONYMS - ",text_syn)
+    }
 
     spinner.stop();
   } catch (err) {
